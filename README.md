@@ -116,3 +116,29 @@ We then create a new Intl.DateTimeFormat object, passing in the desired locale (
 
 The Intl.DateTimeFormat object provides a wide range of options for customizing the date and time formatting to suit the user's locale. It supports different date and time styles, as well as options for customizing the format of the individual components (year, month, day, etc.).
 
+## Utility Dateformatter
+```javascript
+export function formatDate(value) {
+  const {
+    language = 'en-US',
+    inputFormat = moment.ISO_8601,
+    outputFormat = 'short'
+  } = options;
+  return new Intl.DateTimeFormat(language, {
+    year: 'numeric',
+    month: outputFormat,
+    day: 'numeric',
+  }).format(moment(value, inputFormat, true).toDate());
+```
+
+This is a function called `formatDate` that takes a `value` parameter and returns a formatted date string. Here's how it works:
+
+* The function first destructures an object called `options` that has three properties: `language`, `inputFormat`, and `outputFormat`. If any of these properties are not provided, the function sets default values for them.
+* The function then creates a new `Intl.DateTimeFormat` object that takes two arguments: the `language` property from options, and an object that specifies how the date should be formatted. In this case, the object specifies that the year should be formatted numerically, the month should use the outputFormat from options, and the day should be formatted numerically.
+* The function then uses `moment` to parse the `value` parameter, using the `inputFormat` property from options as a guide. It sets the strict flag to `true`, which means that moment will only parse the value if it exactly matches the `inputFormat`. This helps prevent formatting errors.
+* The `toDate()` method is then called on the `moment` object to convert it to a JavaScript Date object.
+* Finally, the `Intl.DateTimeFormat` object's `format()` method is called on the Date object to return the formatted date string.
+
+The `moment` library is being used in this function to convert the input value to a Date object that can be used by the `Intl.DateTimeFormat` function. The `formatDate` function takes an input value, which is assumed to be a date string in a specific format, specified by the `inputFormat` option.
+
+Before the value can be formatted using `Intl.DateTimeFormat`, it needs to be converted to a Date object. The `moment` library is used for this because it provides a convenient way to parse a date string into a Date object, even when the input string is in a non-standard format.
