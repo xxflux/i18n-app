@@ -93,3 +93,26 @@ console.log(new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFr
 // "123,456.79"
 
 ```
+
+# DateTimeFormat
+[Intl.DateTimeFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat) is a built-in object in JavaScript that provides a way to format date and time values based on the locale of the user. It's part of the Internationalization API which was introduced in ECMAScript 2015 (ES6).
+
+Here is an example of how to use Intl.DateTimeFormat:
+```javascript
+const date = new Date('2022-05-01T00:00:00.000Z');
+const options = { year: 'numeric', month: 'long', day: 'numeric' };
+const formatter = new Intl.DateTimeFormat('en-US', options);
+console.log(formatter.format(date)); // output: "May 1, 2022"
+
+const date = new Date('2023-04-21');
+const options = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' };
+const formatter = new Intl.DateTimeFormat('ko-KR', options);
+console.log(formatter.format(date)); // 출력 결과: "2023년 4월 21일 목요일"
+```
+
+In this example, we first create a Date object representing May 1, 2022. We then define an object called options which specifies the date formatting options we want. We want the year to be displayed as a numeric value, the month to be displayed as a long string (e.g. "May"), and the day to be displayed as a numeric value.
+
+We then create a new Intl.DateTimeFormat object, passing in the desired locale ("en-US" in this case) and the formatting options. Finally, we call the format() method on the formatter object and pass in the date object we want to format.
+
+The Intl.DateTimeFormat object provides a wide range of options for customizing the date and time formatting to suit the user's locale. It supports different date and time styles, as well as options for customizing the format of the individual components (year, month, day, etc.).
+
