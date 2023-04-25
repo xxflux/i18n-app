@@ -1,6 +1,6 @@
 # i18n-app
 
-## `i18n-app/blob/main/src/i18n.js`
+## `i18n-app/main/src/i18n.js`
 I18next is a well-written package for internationalization; however, it is often used incorrectly and inefficiently.
 
 Here, I have added i18n.js with the correct locale codes and resource structure, as well as initialized the Pseudo package correctly. Many products do not realize the importance of Pseudo Localization testing and either skip it or do it inefficiently.
