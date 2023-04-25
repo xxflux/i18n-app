@@ -6,6 +6,10 @@ I18next is a well-written package for internationalization; however, it is often
 Here, I have added i18n.js with the correct locale codes and resource structure, as well as initialized the Pseudo package correctly. Many products do not realize the importance of Pseudo Localization testing and either skip it or do it inefficiently.
 
 ```javascript
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
+import PseudoLoc from 'i18next-pseudoloc';
+import LanguageDetector from "i18next-browser-languagedetector";
 import ResourceEnUs from './assets/locale/en-US/translation.json';
 import ResourceEnGb from './assets/locale/en-GB/translation.json';
 import ResourceEsEs from './assets/locale/es-ES/translation.json';
@@ -53,13 +57,17 @@ const resources = {
 
 By default, if en-US is specified, strings that have been extracted can undergo PL testing. However, since numbers and dates are displayed in the en-US format, it can be difficult for someone conducting PL testing to determine if the formatting has been properly implemented based on i18n standards.
 ```javascript
-  .use(new Pseudo({
+.use(new PseudoLoc({
+    lengther:1,
     enabled: true,
-    languageToPseudo: 'pt-BR',
-    letterMultiplier:1,
-    wrapped: true
+    enableCJK: true,
+    sourceLocale: 'pt-BR',
   }))
+  .init({
+    postProcess: ["pseudoloc"],
 ```
+
+[Full code of the i18n.js](https://github.com/xxflux/i18n-app/blob/main/src/i18n.js)
 
 ## NumberFormat
 [Intl.NumberFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat) is a built-in JavaScript object that provides a way to format numbers according to a specific locale. It allows you to display numbers in the format that is appropriate for the user's language, country, and cultural preferences.
