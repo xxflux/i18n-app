@@ -1,6 +1,6 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
-import Pseudo from "i18next-pseudo";
+import PseudoLoc from 'i18next-pseudoloc';
 import LanguageDetector from "i18next-browser-languagedetector";
 import ResourceEnUs from './assets/locale/en-US/translation.json';
 import ResourceEnGb from './assets/locale/en-GB/translation.json';
@@ -56,14 +56,14 @@ const detectionOptions = {
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
-  .use(new Pseudo({
+  .use(new PseudoLoc({
+    lengther:1,
     enabled: true,
-    languageToPseudo: 'pt-BR',
-    letterMultiplier:1,
-    wrapped: true
+    enableCJK: true,
+    sourceLocale: 'pt-BR',
   }))
   .init({
-    postProcess: ["pseudo"],
+    postProcess: ["pseudoloc"],
     resources: {
       //'en': resources.EnUs,
       'en-US': resources.EnUs,
